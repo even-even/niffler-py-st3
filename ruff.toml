@@ -1,0 +1,135 @@
+# Exclude a variety of commonly ignored directories
+exclude = [
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "site-packages",
+    "venv",
+]
+
+# Максимальная длина строки
+line-length = 120
+
+# Ширина отступа (по умолчанию 4 пробела)
+indent-width = 4
+
+# Целевая версия Python
+target-version = "py313"
+
+[lint.pylint]
+# Количество аргументов в функциях
+max-positional-args = 8
+max-args = 8
+
+[lint]
+# Включить экспериментальные правила
+preview = true
+
+# Выбранные правила для проверки
+select = [
+    "E",      # Ошибки (Errors)
+    "W",      # Предупреждения (Warnings)
+    "C",      # Соглашения (Conventions)
+    "F",      # Форматирование (Formatting)
+    "N",      # Соглашения по именованию (Naming conventions)
+    "ARG",    # Аргументы функций (Function arguments)
+    "FA",     # Аннотации функций (Function annotations)
+    "BLE",    # Ошибки, связанные с блоками (Block-level errors)
+    "DTZ",    # Ошибки, связанные с временными зонами (Datetime timezone)
+    "EM",     # Ошибки, связанные с исключениями (Exceptions)
+    "PIE",    # Ошибки, связанные с производительностью (Performance),
+    "PERF",   # Ошибки, связанные с производительностью (Performance) - другой набор правил,
+    "SLF",    # Ошибки, связанные с self (Self-related errors)
+    "SIM",    # Ошибки, связанные с простотой (Simplicity)
+    "ERA",    # Закомментированный код
+    "TRY",    # Ошибки, связанные с блоками try/except (Try/except)
+    "B",      # Ошибки, связанные с багами (Bug)
+    "B9",     # Ошибки, связанные с багами (Bug)
+    "FURB",   # Ошибки, связанные с избыточным кодом (FURB)
+    "UP",     # Ошибки, связанные с устаревшими конструкциями (Upgrade)
+    "TCH",    # Проверка типов (Type Checking)
+    "TID",    # Проверка импортов типов (Type Imports)
+    "RSE",    # Улучшение структуры кода (Readability and Structure)
+    "ASYNC",  # Асинхронный код (Async)
+    "RET",    # Улучшение возвращаемых значений (Return Values)
+    "PTH",    # Возможность использования pathlib (flake8-use-pathlib)
+    "I",      # Cортировка зависимостей (isort)
+    "Q",      # двойные кавычки вместо одинарных
+    "YTT",    # корректность использования sys
+    "PYI",    # https://docs.astral.sh/ruff/rules/#flake8-pyi-pyi
+    #"PGH",   # причина type-ignore. Включить позже
+    "ANN",    # типизация
+    "A",      # https://docs.astral.sh/ruff/rules/#flake8-builtins-a
+    "G",      # https://docs.astral.sh/ruff/rules/#flake8-logging-format-g
+    "PLC",    # https://docs.astral.sh/ruff/rules/#convention-plc
+    "PLE",    # pylint
+    "PLR",    # pylint
+    "PLW",    # pylint
+    "RUF",    # набор правил от самого astral
+    "C4",     # застаяляет писать list/set comprehensions
+    "T10",    # проверяет точки останова в коде
+    "EXE",    # проверка на исполняемость файла (+x доступ)
+    "FIX",    # отсутствие фиксми и т.д.
+    "INT",    # проверки строк
+    "ISC",    # ещё проверки строк - неявные действия с ними
+    "ICN",    # проверки импортов
+    "T20",    # отсутствие print() в коде
+    "PT",     # стилистика использования pytest
+    "SLOT",   # правильность использования __slots__
+    "TID",    # правильность импортов
+    "TD",     # стилистика тудушек в проекте
+    "TC",     # type-checking
+    "FLY",    # https://pypi.org/project/flynt/
+    "COM",    # проверка наличия запятых
+    "LOG",    # проверки использования логирования
+    "S",      # https://github.com/PyCQA/bandit
+    #"D",     # описание у методов - включать постепенно и везде кроме тестов
+]
+
+ignore = [
+    "RUF001",    # ругается на кирилицу
+    "RUF002",    # ругается на кирилицу
+    "RUF003",    # ругается на кирилицу
+    "RUF100",    # ругается на игнор других правил
+    "COM812",    # ставит ненужные запятые в конце списков/кортежей
+    "PLR6201",   # ставит set там где это не нужно
+    "S101",      # ругается на assert
+    "S311",      # ругается на random - у нас не финтех бэкенд сервис
+    "S603",      # просит полный путь до исполняемого файла - в CI и локально у каждого разный путь
+    "S607",      # просит полный путь до исполняемого файла - в CI и локально у каждого разный путь
+
+    "FBT",       # ругается на bool в параметрах функции
+    "CPY",       # мы не опенсорс - копирайт в файлах нам не нужен
+    "FIX002",    # тудушки нам всегда нужны
+    "INP",       # проверки на __init__.py
+    "PT003",     # Убирает scope=function в фикстурах (неявное поведение)
+    "PT006",     # ругается на кортежи в параметризации
+    "PT007",     # ругается на кортежи в параметризации
+    "DOC",       # мы не external либа - для нас избыточно
+    "ANN002",    # args и kwargs
+    "ANN003",    # args и kwargs
+]
+
+[lint.per-file-ignores]
+"**/{tests,scripts}/*" = ["ANN"]
+"allure_decorators.py" = ["ANN"]
+"test_*.py" = ["ANN", "PLR6301", "PLR0913","PLR0917", "PLR2004"] # аннотации и методы с большим количеством параметров в тестах прощаем
+ # magic number ("PLR2004") в тестах - позже унесем в переменную/переменные
