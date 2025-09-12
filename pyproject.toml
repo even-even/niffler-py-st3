@@ -1,0 +1,22 @@
+[project]
+name = "niffler_autotests"
+version = "0.1.0"
+description = "Домашние задания 5 потока курса https://qa.guru/python-advanced"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "allure-pytest>=2.15.0",
+    "httpx>=0.28.1",
+    "loguru>=0.7.3",
+    "mypy>=1.17.1",
+    "playwright>=1.55.0",
+    "pre-commit>=4.3.0",
+    "pytest>=8.4.1",
+    "pytest-durations>=1.6.1",
+    "pytest-playwright>=0.7.1",
+    "pytest-rerunfailures>=16.0.1",
+    "pytest-xdist>=3.8.0",
+    "ruff>=0.12.12",
+    "typos>=1.36.2",
+    "vulture>=2.14",
+]
