@@ -105,7 +105,8 @@ def create_account(page: Page) -> dict[str, str]:
     register_screen.fill_password_submit(psw)
     register_screen.click_register_button()
     register_screen.check_success_register()
-    page.reload()
+    register_screen.signin_button.click()
+    AuthScreen(page).goto_with_awaiting(page, AuthScreen(page).url)
     return {"name": name, "password": psw}
 
 
