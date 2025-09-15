@@ -1,0 +1,7 @@
+[default]
+FRONTEND_URL="http://frontend.niffler.dc"
+GATEWAY_URL="http://gateway.niffler.dc:8090"
+TEST_USERNAME="user"
+TEST_PASSWORD="password"
+
+[stage]

@@ -14,7 +14,7 @@ class RegisterScreen(BaseScreen):
         self.password_submit_field = page.locator("[name='passwordSubmit']")
         self.submit_button = page.locator("[type='submit']")
         self.error_message = page.locator(".form__error")
-        self.signin_form = page.locator(".form_sign-in")
+        self.signin_button = page.locator(".form_sign-in")
         self.success_label = page.locator(".form__paragraph_success")
 
     def fill_username(self, username):

@@ -4,9 +4,12 @@ from zoneinfo import ZoneInfo
 
 import allure
 import pytest
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import Page, sync_playwright
 
 from tests.data.strings import ALL_BROWSERS
+from tests.src.data_generators import get_random_string
+from tests.src.screens.auth_screen import AuthScreen
+from tests.src.screens.register_screen import RegisterScreen
 
 SCREENSHOT_DIR = "screenshots"
 DEFAULT_VIEWPORT = {"width": 1440, "height": 900}
@@ -85,3 +88,34 @@ def pytest_runtest_makereport(item):
         pytest.test_failed = True
         # Улучшаем форматирование имени теста
         pytest.current_test_name = item.name.replace(" ", "_").replace(".", "_")
+
+
+@pytest.fixture(scope="class")
+def create_account(page: Page) -> dict[str, str]:
+
+    name = f"name_{get_random_string()}"
+    psw = "password"
+    register_screen = RegisterScreen(page)
+    auth_screen = AuthScreen(page)
+
+    auth_screen.goto_with_awaiting(page, auth_screen.url)
+    auth_screen.click_register_button()
+    register_screen.fill_username(name)
+    register_screen.fill_password(psw)
+    register_screen.fill_password_submit(psw)
+    register_screen.click_register_button()
+    register_screen.check_success_register()
+    register_screen.signin_button.click()
+    AuthScreen(page).goto_with_awaiting(page, AuthScreen(page).url)
+    return {"name": name, "password": psw}
+
+
+@pytest.fixture(scope="class")
+def auth(page: Page, create_account):  # noqa: ARG001
+    # page.evaluate('return window.sessionStorage.getItem("id_token")') # noqa: ERA001
+    return page.evaluate('() => window.sessionStorage.getItem("id_token")')
+
+
+@pytest.fixture(scope="class")
+def open_auth_screen(page):
+    AuthScreen(page).goto_with_awaiting(page, AuthScreen(page).url)

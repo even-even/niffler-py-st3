@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 
+from config import get_settings
 from tests.src.screens.base_screen import BaseScreen
 
 
@@ -7,7 +8,7 @@ class AuthScreen(BaseScreen):
     def __init__(self, page: Page) -> None:
         super().__init__(page)
         self.page = page
-        self.url = "http://auth.niffler.dc:9000/login"
+        self.url = f"{get_settings().FRONTEND_URL}/login"
 
         self.username_field = page.locator("[name='username']")
         self.password_field = page.locator("[name='password']")

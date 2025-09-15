@@ -4,7 +4,7 @@ from pytest import Parser  # noqa: PT013
 def pytest_addoption(parser: Parser) -> None:
     parser.addoption(
         "--browser_type",
-        default="",
+        default="chromium",
         help="Тип браузера для запуска тестов фронтенда через запятую (chromium, firefox, webkit)"
         # Список браузеров. Firefox в CI не гоняется
     )
