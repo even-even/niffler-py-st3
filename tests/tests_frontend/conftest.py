@@ -111,7 +111,7 @@ def create_account(page: Page) -> dict[str, str]:
 
 @pytest.fixture(scope="class")
 def auth(page: Page, create_account):  # noqa: ARG001
-
+    # page.evaluate('return window.sessionStorage.getItem("id_token")') # noqa: ERA001
     return page.evaluate('() => window.sessionStorage.getItem("id_token")')
 
 
